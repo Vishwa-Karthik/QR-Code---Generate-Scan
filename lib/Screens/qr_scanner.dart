@@ -26,6 +26,14 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       //* app bar
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios,
+          ),
+        ),
         title: Text(
           'QR Scanner',
           style: Theme.of(context).textTheme.headline1,
@@ -58,27 +66,33 @@ class _HomePageState extends State<HomePage> {
 
             //* Camera Container
             Expanded(
-                flex: 2,
-                child: MobileScanner(
-                  allowDuplicates: true,
-                  onDetect: (barcode, args) {
-                    if (!isScanComplete) {
-                      String qrResult = barcode.rawValue ?? "---";
-                      setState(() {
-                        isScanComplete = true;
-                      });
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => QrResultPage(
-                            closeScreen: closeScanner,
-                            qrResult: qrResult,
+              flex: 2,
+              child: Stack(
+                children: [
+                  //* mobile view
+                  MobileScanner(
+                    allowDuplicates: true,
+                    onDetect: (barcode, args) {
+                      if (!isScanComplete) {
+                        String qrResult = barcode.rawValue ?? "---";
+                        setState(() {
+                          isScanComplete = true;
+                        });
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => QrResultPage(
+                              closeScreen: closeScanner,
+                              qrResult: qrResult,
+                            ),
                           ),
-                        ),
-                      );
-                    }
-                  },
-                )),
+                        );
+                      }
+                    },
+                  ),
+                ],
+              ),
+            ),
 
             //* Tools Container
             Expanded(
@@ -90,6 +104,14 @@ class _HomePageState extends State<HomePage> {
                   text: "Flash",
                   icon: const Icon(
                     Icons.flash_on,
+                    color: Colors.white,
+                  ),
+                ),
+                MyTool(
+                  onPressed: () {},
+                  text: "Camera",
+                  icon: const Icon(
+                    Icons.switch_camera_outlined,
                     color: Colors.white,
                   ),
                 ),
