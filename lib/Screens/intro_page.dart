@@ -39,7 +39,7 @@ class IntroPage extends StatelessWidget {
               ),
             ),
             Text(
-              "Read and Generate",
+              "Scan and Generate",
               style: GoogleFonts.poppins(
                 fontSize: 30,
                 letterSpacing: 2,

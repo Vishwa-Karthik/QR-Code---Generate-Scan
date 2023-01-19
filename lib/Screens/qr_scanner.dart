@@ -14,6 +14,15 @@ class _HomePageState extends State<HomePage> {
   //* qr scan transaction
   bool isScanComplete = false;
 
+  //* flash bool
+  bool isFlash = false;
+
+  //* cam bool
+  bool isCam = false;
+
+  //* toggle flash controller
+  MobileScannerController controller = MobileScannerController();
+
   //* change page
   void closeScanner() {
     setState(() {
@@ -67,64 +76,76 @@ class _HomePageState extends State<HomePage> {
             //* Camera Container
             Expanded(
               flex: 2,
-              child: Stack(
-                children: [
-                  //* mobile view
-                  MobileScanner(
-                    allowDuplicates: true,
-                    onDetect: (barcode, args) {
-                      if (!isScanComplete) {
-                        String qrResult = barcode.rawValue ?? "---";
-                        setState(() {
-                          isScanComplete = true;
-                        });
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => QrResultPage(
-                              closeScreen: closeScanner,
-                              qrResult: qrResult,
-                            ),
-                          ),
-                        );
-                      }
-                    },
-                  ),
-                ],
+              child: MobileScanner(
+                controller: controller,
+                allowDuplicates: false,
+                onDetect: (barcode, args) {
+                  if (!isScanComplete) {
+                    String qrResult = barcode.rawValue ?? "---";
+                    setState(() {
+                      isScanComplete = true;
+                    });
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => QrResultPage(
+                          closeScreen: closeScanner,
+                          qrResult: qrResult,
+                        ),
+                      ),
+                    );
+                  }
+                },
               ),
             ),
 
             //* Tools Container
             Expanded(
-                child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                MyTool(
-                  onPressed: () {},
-                  text: "Flash",
-                  icon: const Icon(
-                    Icons.flash_on,
-                    color: Colors.white,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  //* flash toggle
+                  MyTool(
+                    onPressed: () {
+                      setState(() {
+                        isFlash = !isFlash;
+                      });
+                      controller.toggleTorch();
+                    },
+                    text: "Flash",
+                    icon: Icon(
+                      Icons.flash_on,
+                      color: isFlash ? Colors.yellow : Colors.white,
+                    ),
                   ),
-                ),
-                MyTool(
-                  onPressed: () {},
-                  text: "Camera",
-                  icon: const Icon(
-                    Icons.switch_camera_outlined,
-                    color: Colors.white,
+
+                  //* camera toggle
+                  MyTool(
+                    onPressed: () {
+                      setState(() {
+                        isCam = !isCam;
+                      });
+                      controller.switchCamera();
+                    },
+                    text: "Camera",
+                    icon: const Icon(
+                      Icons.switch_camera_outlined,
+                      color: Colors.white,
+                    ),
                   ),
-                ),
-                MyTool(
-                  text: "Gallery",
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.browse_gallery_outlined,
-                    color: Colors.white,
+
+                  //* gallery toggle
+                  MyTool(
+                    text: "Gallery",
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.browse_gallery_outlined,
+                      color: Colors.white,
+                    ),
                   ),
-                ),
-              ],
-            )),
+                ],
+              ),
+            ),
           ],
         ),
       ),
