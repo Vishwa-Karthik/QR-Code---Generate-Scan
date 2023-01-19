@@ -1,16 +1,31 @@
-# qr_code
+# QR Generator & Scanner
 
-A new Flutter project.
+A simple use case approach to scan and generate QR codes using Flutter & Dart
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## Getting started
+```bash
+flutter pub get
+```
 
-A few resources to get you started if this is your first Flutter project:
+## Features
+1. Switch Camera 
+2. Toggle Torch
+3. Share 
+4. Copy to Clipboard
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Results
+<p>
+<img src="./results/1.jpg" width="400" height="800" />
+<img src="./results/2.jpg" width="400" height="800" />
+</p>
+<p>
+<img src="./results/3.jpg" width="400" height="800" />
+<img src="./results/4.jpg" width="400" height="800" />
+</p>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Refernces
+1. Google Fonts <br>
+2. QR Flutter <br>
+3. Mobile Scanner <br>
+4. Flutter Launcher Icons  <br>
