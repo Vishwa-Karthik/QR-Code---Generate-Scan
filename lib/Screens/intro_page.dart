@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:qr_code/Screens/qr_generate.dart';
 import 'package:qr_code/Widgets/button.dart';
 
 import 'qr_scanner.dart';
@@ -51,7 +52,14 @@ class IntroPage extends StatelessWidget {
             //todo generate button
             MyButton(
               text: "Generate QR",
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const QRGenerate(),
+                  ),
+                );
+              },
               icon: const Icon(
                 Icons.qr_code_scanner_outlined,
                 color: Colors.white,
