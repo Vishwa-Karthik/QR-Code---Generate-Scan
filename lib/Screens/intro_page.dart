@@ -53,6 +53,7 @@ class IntroPage extends StatelessWidget {
             MyButton(
               text: "Generate QR",
               onPressed: () {
+                HapticFeedback.heavyImpact();
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -74,6 +75,7 @@ class IntroPage extends StatelessWidget {
             MyButton(
               text: "Scan QR",
               onPressed: () {
+                HapticFeedback.heavyImpact();
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -90,7 +92,7 @@ class IntroPage extends StatelessWidget {
             const Spacer(flex: 2),
 
             const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 18.0),
+              padding: EdgeInsets.symmetric(horizontal: 22.0),
               child: Divider(
                 color: Colors.black,
                 thickness: 2,
@@ -102,7 +104,7 @@ class IntroPage extends StatelessWidget {
               "Developed by Vishwa Karthik",
               style: GoogleFonts.poppins(
                 color: Colors.black,
-                fontSize: 20,
+                fontSize: 10,
                 fontWeight: FontWeight.w600,
               ),
             ),

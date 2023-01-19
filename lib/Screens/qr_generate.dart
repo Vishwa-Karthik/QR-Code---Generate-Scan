@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:qr_code/Widgets/button.dart';
 import 'package:qr_code/Widgets/tool.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -92,6 +93,7 @@ class _QRGenerateState extends State<QRGenerate> {
               MyButton(
                 text: "Generate QR",
                 onPressed: () {
+                  HapticFeedback.heavyImpact();
                   setState(() {
                     data = _textEditingController.text;
                   });
@@ -111,13 +113,17 @@ class _QRGenerateState extends State<QRGenerate> {
                   MyTool(
                     icon: const Icon(Icons.download),
                     text: "Save",
-                    onPressed: () {},
+                    onPressed: () {
+                      HapticFeedback.heavyImpact();
+                    },
                   ),
                   //* share
                   MyTool(
                     icon: const Icon(Icons.share),
                     text: "Share",
-                    onPressed: () {},
+                    onPressed: () {
+                      HapticFeedback.heavyImpact();
+                    },
                   ),
                 ],
               )

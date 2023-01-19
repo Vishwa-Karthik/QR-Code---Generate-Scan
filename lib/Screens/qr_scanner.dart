@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:qr_code/Screens/qr_screen_result.dart';
 import 'package:qr_code/Widgets/tool.dart';
@@ -37,6 +38,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
+            HapticFeedback.heavyImpact();
             Navigator.pop(context);
           },
           icon: const Icon(
@@ -78,7 +80,7 @@ class _HomePageState extends State<HomePage> {
               flex: 2,
               child: MobileScanner(
                 controller: controller,
-                allowDuplicates: false,
+                allowDuplicates: true,
                 onDetect: (barcode, args) {
                   if (!isScanComplete) {
                     String qrResult = barcode.rawValue ?? "---";
@@ -107,6 +109,7 @@ class _HomePageState extends State<HomePage> {
                   //* flash toggle
                   MyTool(
                     onPressed: () {
+                      HapticFeedback.heavyImpact();
                       setState(() {
                         isFlash = !isFlash;
                       });
@@ -122,6 +125,7 @@ class _HomePageState extends State<HomePage> {
                   //* camera toggle
                   MyTool(
                     onPressed: () {
+                      HapticFeedback.heavyImpact();
                       setState(() {
                         isCam = !isCam;
                       });
@@ -137,7 +141,9 @@ class _HomePageState extends State<HomePage> {
                   //* gallery toggle
                   MyTool(
                     text: "Gallery",
-                    onPressed: () {},
+                    onPressed: () {
+                      HapticFeedback.heavyImpact();
+                    },
                     icon: const Icon(
                       Icons.browse_gallery_outlined,
                       color: Colors.white,
