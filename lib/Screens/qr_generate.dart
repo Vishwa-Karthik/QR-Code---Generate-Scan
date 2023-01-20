@@ -55,6 +55,13 @@ class _QRGenerateState extends State<QRGenerate> {
               TextField(
                 controller: _textEditingController,
                 decoration: InputDecoration(
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      HapticFeedback.heavyImpact();
+                      _textEditingController.clear();
+                    },
+                    icon: const Icon(Icons.clear),
+                  ),
                   filled: true,
                   fillColor: Colors.white10,
                   focusColor: Colors.brown,

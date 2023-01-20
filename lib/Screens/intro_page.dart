@@ -75,7 +75,7 @@ class IntroPage extends StatelessWidget {
             MyButton(
               text: "Scan QR",
               onPressed: () {
-                HapticFeedback.heavyImpact();
+                HapticFeedback.vibrate();
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -104,7 +104,7 @@ class IntroPage extends StatelessWidget {
               "Developed by Vishwa Karthik",
               style: GoogleFonts.poppins(
                 color: Colors.black,
-                fontSize: 10,
+                fontSize: 14,
                 fontWeight: FontWeight.w600,
               ),
             ),
